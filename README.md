@@ -1,0 +1,1 @@
+# inson-va-kompyuterning-o-zaro-ta-siri
