@@ -1,17 +1,37 @@
 <?php
-$db='C:\Users\Asus\Desktop\php\php.accdb';
-if(!file_exists ($db))
-{
-die (Could Not Find Database File');
-}
+// Define your data
+$data = array(
+    array("Axmoq", "Aktyor", "Musiqa", "Sanat", "Sariq", "Tabiat partireti", "Klasikk", "Kamedia", "Kamedia"),
+    array("Dangasa", "Shoir", "Kibir sport", "Musiqa", "Qora", "Qo`rqinchli", "Jaz", "Qo`rqinchli video", "Kamedia"),
+    // Add more data here as needed
+);
 
-$db=new PDO("odbc:DRIVER={Microsoft Access Driver (*.mbd)};DBQ=$db; Uid=; Pwd=;");
-
-$sql = "SELECT * FROM userinfo";
-
-$result= $db->query($sql);
-//echo "<pre">'print_r($result->fetchAll());
+// Define a result set with your data
+$result = new ArrayObject($data);
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
 <table>
             <tr>
                 <th>№</th>
@@ -225,4 +245,14 @@ $result= $db->query($sql);
             </tr>
 	   <?php } ?>
         
+<?php foreach ($result as $key => $row) { ?>
+            <tr>
+                <td><?php echo $key + 1; ?></td>
+                <?php foreach ($row as $value) { ?>
+                    <td><?php echo $value; ?></td>
+                <?php } ?>
+            </tr>
+        <?php } ?>
     </table>
+</body>
+</html>
